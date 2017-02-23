@@ -112,14 +112,15 @@ public class MSButton
     }
     public boolean isValid(int r, int c)
     {
-        if(c >= 0 && buttons[r][c-1].isClicked()) {
-            return true;
-        }
-        else if (r >= 0 && buttons[r-1][c].isClicked()) {
+        if(c >= 0 && r>= 0 && c<=19 && r<=19 ) 
+        {
             return true;
         }
         else 
+        {
             return false;
+        }
+        
        
     }
     public int countBombs(int row, int col)
