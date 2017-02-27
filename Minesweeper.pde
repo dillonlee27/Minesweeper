@@ -127,6 +127,10 @@ public class MSButton
     {
         int numBombs = 0;
         //your code here
+        if(isValid(r,c+1)==true && bombs.contains(buttons[r][c+1]))
+            numBombs++;
+        // if(isValid(r,c-1)==true && bombs.contains9)
+        // return numBombs;
         return numBombs;
     }
 }
