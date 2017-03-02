@@ -87,8 +87,43 @@ public class MSButton
     
     public void mousePressed () 
     {
-        clicked = true;
-        //your code here
+         clicked = true;
+        if(keyPressed == true)
+        {
+            if(marked == true)
+            {
+                marked = false;
+                clicked = false;
+            }
+            else 
+            {
+              marked = true;  
+            }
+        }
+        else if (countBombs(r,c) > 0)
+        {
+            setLabel(""+countBombs(r,c));
+        }
+        else 
+        {
+            clicked = false;
+            if(isValid(r,c+1) && buttons[r][c+1].isMarked())
+                buttons[r][c+1].mousePressed();
+            if(isValid(r,c-1) && buttons[r][c-1].isMarked())
+                buttons[r][c-1].mousePressed();
+            if(isValid(r+1,c) && buttons[r+1][c].isMarked())
+                buttons[r+1][c].mousePressed();
+            if(isValid(r-1,c) && buttons[r-1][c].isMarked())
+                buttons[r-1][c].mousePressed();
+            if(isValid(r-1,c-1) && buttons[r-1][c-1].isMarked())
+                buttons[r-1][c-1].mousePressed();
+            if(isValid(r-1,c+1) && buttons[r-1][c+1].isMarked())
+                buttons[r-1][c+1].mousePressed();
+            if(isValid(r+1,c-1) && buttons[r+1][c-1].isMarked())
+                buttons[r+1][c-1].mousePressed();
+            if(isValid(r+1,c+1) && buttons[r+1][c+1].isMarked())
+                buttons[r+1][c+1].mousePressed();
+        }
     }
 
     public void draw () 
