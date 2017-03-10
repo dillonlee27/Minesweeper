@@ -27,7 +27,7 @@ void setup ()
 }
 public void setBombs()
 {
-    while(bombs.size() < 20) 
+    while(bombs.size() < 3) 
     {
         int rowsBeta = (int)(Math.random()*NUM_ROWS);
         int colBeta = (int)(Math.random()*NUM_COLS);
@@ -107,22 +107,22 @@ public class MSButton
         else 
         {
             clicked = false;
-            if(isValid(r,c+1) && buttons[r][c+1].isMarked())
+            if(isValid(r,c+1) && buttons[r][c+1].isClicked())
                 buttons[r][c+1].mousePressed();
-            if(isValid(r,c-1) && buttons[r][c-1].isMarked())
-                buttons[r][c-1].mousePressed();
-            if(isValid(r+1,c) && buttons[r+1][c].isMarked())
-                buttons[r+1][c].mousePressed();
-            if(isValid(r-1,c) && buttons[r-1][c].isMarked())
-                buttons[r-1][c].mousePressed();
-            if(isValid(r-1,c-1) && buttons[r-1][c-1].isMarked())
-                buttons[r-1][c-1].mousePressed();
-            if(isValid(r-1,c+1) && buttons[r-1][c+1].isMarked())
-                buttons[r-1][c+1].mousePressed();
-            if(isValid(r+1,c-1) && buttons[r+1][c-1].isMarked())
-                buttons[r+1][c-1].mousePressed();
-            if(isValid(r+1,c+1) && buttons[r+1][c+1].isMarked())
-                buttons[r+1][c+1].mousePressed();
+            if(isValid(r,c-1) && buttons[r][c-1].isClicked())
+                 buttons[r][c-1].mousePressed();
+            if(isValid(r+1,c) && buttons[r+1][c].isClicked())
+                 buttons[r+1][c].mousePressed();
+            if(isValid(r-1,c) && buttons[r-1][c].isClicked())
+                 buttons[r-1][c].mousePressed();
+            if(isValid(r-1,c-1) && buttons[r-1][c-1].isClicked())
+                 buttons[r-1][c-1].mousePressed();
+            if(isValid(r-1,c+1) && buttons[r-1][c+1].isClicked())
+                 buttons[r-1][c+1].mousePressed();
+            if(isValid(r+1,c-1) && buttons[r+1][c-1].isClicked())
+                 buttons[r+1][c-1].mousePressed();
+            if(isValid(r+1,c+1) && buttons[r+1][c+1].isClicked())
+                 buttons[r+1][c+1].mousePressed();
         }
     }
 
