@@ -39,21 +39,39 @@ public void setBombs()
 public void draw ()
 {
     if(isWon())
-    background( 0 );
+    {
+        background( 0 );
         displayWinningMessage();
+    }
+   
 }
 public boolean isWon()
 {
-    //your code here
-    return false;
+    for(MSButton[] row: buttons)
+        for(MSButton x : row)
+            if(x.isClicked() == false) {
+                return false;
+            }
+            else if(x.isClicked() == true) {
+                displayWinningMessage();
+            }
+    return true;
+
 }
+
 public void displayLosingMessage()
 {
-    //your code here
+     text("You Lose!", 200, 200);
+     textSize(12);
+     for(int rowX = 0; rowX < NUM_ROWS; rowX++){
+        for(int colY = 0; colY < NUM_COLS; colY++){
+          buttons[rowX][colY].mousePressed();
+      }
+    }
 }
 public void displayWinningMessage()
 {
-    //your code here
+     text("You Win!", 300,300);
 }
 
 public class MSButton
@@ -87,7 +105,7 @@ public class MSButton
     
     public void mousePressed () 
     {
-         clicked = true;
+        clicked = true;
         if(keyPressed == true)
         {
             if(marked == true)
@@ -104,6 +122,11 @@ public class MSButton
         else if (countBombs(r,c) > 0)
         {
             setLabel(""+countBombs(r,c));
+        }
+        else if (clicked && bombs.contains(this)){
+            fill(255,0,0);
+            displayLosingMessage();  
+
         }
         else 
         {
@@ -130,11 +153,17 @@ public class MSButton
     {    
         if (marked)
             fill(0);
-         else if( clicked && bombs.contains(this) ) 
+         else if(clicked && bombs.contains(this)) {
              fill(255,0,0);
-        else if(clicked)
+             displayLosingMessage();
+         }
+         else if(clicked) {
             fill( 200 );
-        else 
+            if(countBombs(r,c)>0){
+                label = ""+(this.countBombs(r,c)); 
+                text(label, x+width/2, y+ height/2);}
+        }
+         else 
             fill( 100 );
 
         rect(x, y, width, height);
