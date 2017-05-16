@@ -55,7 +55,7 @@ public boolean isWon()
             else if(x.isClicked() == true) {
                 displayWinningMessage();
             }
-    return true;
+    return false;
 
 }
 
@@ -63,15 +63,20 @@ public void displayLosingMessage()
 {
      text("You Lose!", 200, 200);
      textSize(12);
+     fill(0);
+     textSize(12);
      for(int rowX = 0; rowX < NUM_ROWS; rowX++){
         for(int colY = 0; colY < NUM_COLS; colY++){
           buttons[rowX][colY].mousePressed();
+          fill(255,0,0);
       }
     }
 }
 public void displayWinningMessage()
 {
      text("You Win!", 300,300);
+     textSize(12);
+     noLoop();
 }
 
 public class MSButton
@@ -105,10 +110,11 @@ public class MSButton
     
     public void mousePressed () 
     {
+
         clicked = true;
         if(keyPressed == true)
         {
-            if(marked == true)
+            if(marked == false)
             {
                 marked = false;
                 clicked = false;
@@ -118,7 +124,6 @@ public class MSButton
               marked = true;  
             }
         }
-        //else if(click on bomb)
         else if (countBombs(r,c) > 0)
         {
             setLabel(""+countBombs(r,c));
@@ -163,9 +168,14 @@ public class MSButton
                 label = ""+(this.countBombs(r,c)); 
                 text(label, x+width/2, y+ height/2);}
         }
-         else 
+         else if (isWon()){
+            displayWinningMessage();
+            noLoop();
+            }
+        else
+        {
             fill( 100 );
-
+        }
         rect(x, y, width, height);
         fill(0);
         text(label,x+width/2,y+height/2);
