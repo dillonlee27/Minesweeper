@@ -5,7 +5,9 @@ public final static int NUM_ROWS = 20;
 public final static int NUM_COLS = 20; 
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
-
+private int bombsMuch = 0;
+private int clearBombs = 0;
+private static int bombsWithin = 30;
 void setup ()
 {
     size(400, 400);
@@ -21,9 +23,10 @@ void setup ()
             buttons[rows][col] = new MSButton(rows,col);
         }
     }
-    
-    
+    bombMuch=bombsWithin;
+    while(bombsMuch>=1){
     setBombs();
+    }
 }
 public void setBombs()
 {
@@ -38,11 +41,11 @@ public void setBombs()
 
 public void draw ()
 {
-    if(isWon())
-    {
-        background( 0 );
-        displayWinningMessage();
-    }
+    //if(isWon())
+    //{
+        //background( 0 );
+        //displayWinningMessage();
+    //}
    
 }
 public boolean isWon()
