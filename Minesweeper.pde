@@ -52,14 +52,16 @@ public boolean isWon()
 {
     for(MSButton[] row: buttons)
         for(MSButton x : row)
-            if(x.isClicked() == false) {
-                return false;
-            }
-            else if(x.isClicked() == true) {
-                displayWinningMessage();
-            }
-    return false;
-
+            if(buttons[row][x].isClicked()){
+            clearBombs++;
+           }
+        }
+     }
+      if(clearBombs>=(NUM_ROWS*NUM_COLS)-bombsMuch){
+            return true;    
+        }
+        clearBombs=0;
+        return false;
 }
 
 public void displayLosingMessage()
@@ -114,27 +116,15 @@ public class MSButton
     public void mousePressed () 
     {
 
-        clicked = true;
-        if(keyPressed == true)
+   
+        if(keyPressed == false)
         {
+            clicked=true;
             if(marked == false)
-            {
-                marked = false;
-                clicked = false;
-            }
-            else 
-            {
-              marked = true;  
-            }
-        }
-        else if (countBombs(r,c) > 0)
+         if (countBombs(r,c) > 0)
         {
+            fill(0);
             setLabel(""+countBombs(r,c));
-        }
-        else if (clicked && bombs.contains(this)){
-            fill(255,0,0);
-            displayLosingMessage();  
-
         }
         else 
         {
@@ -155,8 +145,10 @@ public class MSButton
             if(isValid(r+1,c+1) && buttons[r+1][c+1].isClicked()==false)
                  buttons[r+1][c+1].mousePressed();
         }
+       }else if(keyPressed==true){
+            marked=!marked;
     }
-
+}
     public void draw () 
     {    
         if (marked)
